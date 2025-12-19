@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import path from "path";
+import { fileURLToPath, URL } from "node:url";
+
+const srcPath = fileURLToPath(new URL("./src/", import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
@@ -12,9 +14,8 @@ export default defineConfig(() => ({
   // runs the same locally as it does in the Lovable preview.
   plugins: [react()],
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+    // Safer than aliasing "@" directly (which can clash with scoped packages).
+    alias: [{ find: /^@\//, replacement: srcPath }],
   },
 }));
 
