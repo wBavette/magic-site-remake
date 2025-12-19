@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const IPTV = () => {
-  const [selectedPlan, setSelectedPlan] = useState<string>("1an");
+  const [selectedPlan, setSelectedPlan] = useState<string>("12mois");
 
   const features = [
     { icon: Tv, title: "15 000+ Chaînes", description: "HD et 4K disponibles" },
@@ -14,9 +14,10 @@ const IPTV = () => {
   ];
 
   const plans = [
-    { id: "3mois", duration: "3 mois", price: "20€" },
-    { id: "6mois", duration: "6 mois", price: "35€" },
-    { id: "1an", duration: "1 an", price: "50€" },
+    { id: "1mois", duration: "1 mois", price: "10€" },
+    { id: "3mois", duration: "3 mois", price: "15€" },
+    { id: "6mois", duration: "6 mois", price: "25€" },
+    { id: "12mois", duration: "12 mois", price: "40€" },
   ];
 
   const included = [
@@ -89,7 +90,7 @@ const IPTV = () => {
               </div>
 
               <a
-                href="https://discord.gg/EMmEXv3v4x"
+                href="https://discord.gg/56GhAx7qgT"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-purple-500 text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity"
@@ -119,7 +120,7 @@ const IPTV = () => {
             <p className="text-muted-foreground mb-6">Essai gratuit 24h sans engagement</p>
             
             <a
-              href="https://discord.gg/EMmEXv3v4x"
+              href="https://discord.gg/56GhAx7qgT"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-primary/10 border border-primary text-foreground font-semibold py-3 px-8 rounded-lg hover:bg-primary/20 transition-colors"
