@@ -18,8 +18,8 @@ const Navbar = () => {
             to="/iptv"
             className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold text-sm py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors"
           >
-            <span>💎</span>
-            Notre IPTV 1 an à 50€ !!
+            <span>🛒</span>
+            Achète ton IPTV
           </Link>
 
           <div className="h-6 w-px bg-border hidden sm:block" />
