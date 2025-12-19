@@ -19,14 +19,20 @@ const StreamSection = ({ title, streams, type }: StreamSectionProps) => {
   const isEmpty = streams.length === 0;
 
   return (
-    <section className="py-6">
+    <section className="py-8">
       <div className="flex items-center gap-3 mb-6">
-        <span className={type === "main" ? "section-dot" : "section-dot-blue"} />
+        <span 
+          className={`w-2 h-2 rounded-full ${
+            type === "main" 
+              ? "bg-live shadow-[0_0_8px_hsl(0_84%_60%/0.6)]" 
+              : "bg-blue-500 shadow-[0_0_8px_hsl(217_91%_60%/0.6)]"
+          }`} 
+        />
         <h2 className="text-xl font-semibold text-foreground">{title}</h2>
       </div>
 
       {isEmpty ? (
-        <p className="text-muted-foreground text-center py-8">
+        <p className="text-muted-foreground text-center py-12 bg-card/30 rounded-xl border border-border/30">
           Aucun stream {type === "main" ? "principal" : "backup"} actif
         </p>
       ) : (

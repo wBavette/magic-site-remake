@@ -1,6 +1,9 @@
 import { Tv, ArrowRight } from "lucide-react";
 
 const HeroLanding = () => {
+  const scrollToStreams = () => {
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+  };
   return (
     <section className="min-h-screen hero-gradient flex items-center justify-center px-6">
       <div className="max-w-[650px] w-full text-center">
@@ -45,7 +48,7 @@ const HeroLanding = () => {
           className="opacity-0 animate-fade-in-up"
           style={{ animationDelay: "0.5s" }}
         >
-          <button className="btn-primary-hero group">
+          <button onClick={scrollToStreams} className="btn-primary-hero group">
             <Tv className="w-5 h-5" />
             <span>Voir les streams</span>
             <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
