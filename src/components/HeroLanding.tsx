@@ -52,19 +52,10 @@ const HeroLanding = () => {
 
           {/* Subtitle */}
           <p 
-            className="text-lg md:text-xl font-medium text-muted-foreground mb-4 opacity-0 animate-fade-in"
+            className="text-lg md:text-xl font-medium text-muted-foreground mb-8 opacity-0 animate-fade-in"
             style={{ animationDelay: "0.3s" }}
           >
             Votre destination ultime pour le streaming live
-          </p>
-
-          {/* Description */}
-          <p 
-            className="text-sm text-muted-foreground/70 leading-relaxed mb-8 max-w-[480px] mx-auto text-balance opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.4s" }}
-          >
-            Accédez à tous vos contenus préférés en un seul endroit. Interface moderne, 
-            streaming fluide, expérience premium.
           </p>
         </div>
       </div>
