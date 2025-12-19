@@ -1,8 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { fileURLToPath, URL } from "node:url";
+import { fileURLToPath, URL } from "url";
 
-const srcPath = fileURLToPath(new URL("./src/", import.meta.url));
+
+const srcFsPath = fileURLToPath(new URL("./src/", import.meta.url));
+// Vite/Rollup aliasing behaves best with POSIX-style paths, even on Windows.
+const srcPosixPath = srcFsPath.replace(/\\/g, "/");
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
@@ -14,8 +17,7 @@ export default defineConfig(() => ({
   // runs the same locally as it does in the Lovable preview.
   plugins: [react()],
   resolve: {
-    // Safer than aliasing "@" directly (which can clash with scoped packages).
-    alias: [{ find: /^@\//, replacement: srcPath }],
+    alias: [{ find: /^@\//, replacement: srcPosixPath }],
   },
 }));
 
