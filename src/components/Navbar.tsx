@@ -7,9 +7,8 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-card border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center">
           <img src={meruLogo} alt="MERU TV" className="h-8 w-auto" />
-          <span className="font-bold text-lg text-foreground">MERU TV</span>
         </Link>
 
         {/* IPTV Button & Social Icons */}
@@ -29,7 +28,9 @@ const Navbar = () => {
           <div className="flex items-center gap-1">
             {/* Discord */}
             <a
-              href="#"
+              href="https://discord.gg/EMmEXv3v4x"
+              target="_blank"
+              rel="noopener noreferrer"
               className="social-icon p-2 rounded-lg hover:bg-muted transition-colors"
               aria-label="Discord"
             >
@@ -40,7 +41,9 @@ const Navbar = () => {
 
             {/* X/Twitter */}
             <a
-              href="#"
+              href="https://x.com/_merutv"
+              target="_blank"
+              rel="noopener noreferrer"
               className="social-icon p-2 rounded-lg hover:bg-muted transition-colors"
               aria-label="X"
             >
