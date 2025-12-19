@@ -8,6 +8,7 @@ import CGU from "./pages/CGU";
 import Confidentialite from "./pages/Confidentialite";
 import DMCA from "./pages/DMCA";
 import DevenirHebergeur from "./pages/DevenirHebergeur";
+import IPTV from "./pages/IPTV";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/confidentialite" element={<Confidentialite />} />
           <Route path="/dmca" element={<DMCA />} />
           <Route path="/devenir-hebergeur" element={<DevenirHebergeur />} />
+          <Route path="/iptv" element={<IPTV />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
