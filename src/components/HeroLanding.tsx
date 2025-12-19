@@ -27,7 +27,7 @@ const HeroLanding = () => {
   ];
 
   return (
-    <section className="min-h-screen hero-gradient flex flex-col px-6 py-12">
+    <section className="flex-1 hero-gradient flex flex-col px-6 py-12">
       {/* Hero Content */}
       <div className="flex-1 flex items-center justify-center">
         <div className="max-w-[650px] w-full text-center">
