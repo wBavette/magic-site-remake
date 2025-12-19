@@ -1,8 +1,11 @@
-import { Tv, ArrowRight, AlertTriangle } from "lucide-react";
+import { ArrowRight, AlertTriangle, X } from "lucide-react";
+import { useState } from "react";
 import StreamCard from "./StreamCard";
 import streamMatchImage from "@/assets/stream-match.png";
 
 const HeroLanding = () => {
+  const [showAlert, setShowAlert] = useState(true);
+
   const backupStreams = [
     {
       id: "1",
@@ -29,29 +32,40 @@ const HeroLanding = () => {
   ];
 
   return (
-    <section className="flex-1 hero-gradient flex flex-col px-6 py-12">
-      {/* Warning Alert */}
-      <div className="w-full max-w-4xl mx-auto mb-8 opacity-0 animate-fade-in">
-        <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 rounded-xl p-6 text-center">
-          <div className="flex items-center justify-center gap-2 text-amber-400 mb-2">
-            <AlertTriangle className="w-5 h-5" />
-            <span className="font-semibold">LE SITE PEUT SAUTER À TOUT MOMENT</span>
-            <AlertTriangle className="w-5 h-5" />
+    <section className="flex-1 hero-gradient flex flex-col px-6 py-12 relative">
+      {/* Warning Alert - Top Right */}
+      {showAlert && (
+        <div className="fixed top-20 right-4 z-50 max-w-sm animate-fade-in">
+          <div className="bg-card border border-border rounded-xl p-4 shadow-lg">
+            <button
+              onClick={() => setShowAlert(false)}
+              className="absolute top-2 right-2 p-1 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Fermer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            
+            <div className="flex items-center gap-2 text-amber-400 mb-2 pr-6">
+              <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+              <span className="font-semibold text-sm">LE SITE PEUT SAUTER À TOUT MOMENT</span>
+            </div>
+            
+            <p className="text-sm text-muted-foreground mb-3">
+              📢 Rejoins notre canal secours pour être toujours informé !
+            </p>
+            
+            <a
+              href="https://discord.com/invite/EMmEXv3v4x"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground text-sm font-semibold py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors w-full justify-center"
+            >
+              Rejoignez ici !
+              <ArrowRight className="w-3 h-3" />
+            </a>
           </div>
-          <p className="text-foreground mb-4">
-            📢 Rejoins vite notre canal secours pour être toujours informé !!
-          </p>
-          <a
-            href="https://discord.com/invite/EMmEXv3v4x"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold py-2 px-6 rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            Rejoignez ici !
-            <ArrowRight className="w-4 h-4" />
-          </a>
         </div>
-      </div>
+      )}
 
       {/* Hero Content */}
       <div className="flex-1 flex items-center justify-center">
