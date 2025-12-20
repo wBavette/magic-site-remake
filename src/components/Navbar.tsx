@@ -4,10 +4,10 @@ import meruLogo from "@/assets/meru-logo.png";
 
 const Navbar = () => {
   return (
-    <nav className="sticky top-0 z-50 bg-card border-b border-border">
+    <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border animate-slide-up">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center transition-transform duration-300 hover:scale-105">
           <img src={meruLogo} alt="MERU TV" className="h-8 w-auto" />
         </Link>
 
@@ -16,9 +16,9 @@ const Navbar = () => {
           {/* IPTV Button */}
           <Link
             to="/iptv"
-            className="inline-flex items-center gap-1.5 sm:gap-2 bg-primary text-primary-foreground font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-1.5 sm:gap-2 bg-primary text-primary-foreground font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 hover:scale-105 transition-all duration-300"
           >
-            <span>🛒</span>
+            <span className="animate-bounce-subtle">🛒</span>
             <span className="hidden xs:inline">Achète ton</span> IPTV
           </Link>
 
@@ -31,7 +31,7 @@ const Navbar = () => {
               href="https://discord.gg/EMmEXv3v4x"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon p-2 rounded-lg hover:bg-muted transition-colors"
+              className="social-icon p-2 rounded-lg hover:bg-muted hover:scale-110 transition-all duration-300"
               aria-label="Discord"
             >
               <svg className="w-5 h-5 text-foreground" viewBox="0 0 24 24" fill="currentColor">
@@ -44,7 +44,7 @@ const Navbar = () => {
               href="https://x.com/_merutv"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon p-2 rounded-lg hover:bg-muted transition-colors"
+              className="social-icon p-2 rounded-lg hover:bg-muted hover:scale-110 transition-all duration-300"
               aria-label="X"
             >
               <svg className="w-5 h-5 text-foreground" viewBox="0 0 24 24" fill="currentColor">
