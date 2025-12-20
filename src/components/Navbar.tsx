@@ -16,10 +16,10 @@ const Navbar = () => {
           {/* IPTV Button */}
           <Link
             to="/iptv"
-            className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold text-sm py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-1.5 sm:gap-2 bg-primary text-primary-foreground font-semibold text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg hover:bg-primary/90 transition-colors"
           >
             <span>🛒</span>
-            Achète ton IPTV
+            <span className="hidden xs:inline">Achète ton</span> IPTV
           </Link>
 
           <div className="h-6 w-px bg-border hidden sm:block" />
