@@ -105,20 +105,25 @@ const HeroLanding = () => {
         style={{ animationDelay: "0.5s" }}
       >
         <div className="flex items-center gap-3 mb-4">
-          <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_hsl(217_91%_60%/0.6)]" />
+          <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_hsl(217_91%_60%/0.6)] animate-glow" />
           <h2 className="text-lg font-semibold text-foreground">Streams disponibles</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {backupStreams.map((stream) => (
-            <StreamCard
+          {backupStreams.map((stream, index) => (
+            <div 
               key={stream.id}
-              title={stream.title}
-              category={stream.category}
-              viewers={stream.viewers}
-              isLive={stream.isLive}
-              thumbnail={stream.thumbnail}
-            />
+              className="opacity-0 animate-fade-in-up"
+              style={{ animationDelay: `${0.6 + index * 0.15}s` }}
+            >
+              <StreamCard
+                title={stream.title}
+                category={stream.category}
+                viewers={stream.viewers}
+                isLive={stream.isLive}
+                thumbnail={stream.thumbnail}
+              />
+            </div>
           ))}
         </div>
       </div>
