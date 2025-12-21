@@ -70,7 +70,7 @@ const HeroLanding = () => {
               rel="noopener noreferrer"
               className="btn-primary-hero w-full text-xs sm:text-sm py-2.5 sm:py-3"
             >
-              Rejoindre Discord
+              Rejoindre
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
