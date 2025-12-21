@@ -33,6 +33,33 @@ const HeroLanding = () => {
       thumbnail: "https://i2-prod.manchestereveningnews.co.uk/incoming/article18923807.ece/ALTERNATES/s1200/1_VILMUN.jpg",
       url: "https://dailymotion.com",
     },
+    {
+      id: "4",
+      title: "Ligue des Champions",
+      category: "Football",
+      viewers: 1892,
+      isLive: true,
+      thumbnail: "https://e0.365dm.com/23/09/1600x900/skysports-real-madrid-atletico_6289241.jpg",
+      url: "https://youtube.com",
+    },
+    {
+      id: "5",
+      title: "Match de Boxe",
+      category: "Combat",
+      viewers: 2134,
+      isLive: true,
+      thumbnail: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800",
+      url: "https://twitch.tv",
+    },
+    {
+      id: "6",
+      title: "Coupe du Monde",
+      category: "Sport",
+      viewers: 1567,
+      isLive: true,
+      thumbnail: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800",
+      url: "https://dailymotion.com",
+    },
   ];
 
   return (
