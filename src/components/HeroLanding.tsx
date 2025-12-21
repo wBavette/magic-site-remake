@@ -13,6 +13,7 @@ const HeroLanding = () => {
       viewers: 1247,
       isLive: true,
       thumbnail: "https://media.ouest-france.fr/v1/pictures/MjAyNTEyZDZjZjNiYTkyZjFiNDlkZjljMmVjMDljNDZhMTU0MzI?width=1260&height=708&focuspoint=50%2C25&cropresize=1&client_id=bpeditorial&sign=98c65fbdf236cbeca6801e743bd000cff274e3deec659f6eca7e7d365349bb96",
+      url: "https://youtube.com",
     },
     {
       id: "2", 
@@ -21,6 +22,7 @@ const HeroLanding = () => {
       viewers: 856,
       isLive: true,
       thumbnail: "https://www.lequipe.fr/_medias/img-photo-jpg/-/1500000002055328/0-828-552-75/30f8a.jpg",
+      url: "https://twitch.tv",
     },
     {
       id: "3",
@@ -29,6 +31,7 @@ const HeroLanding = () => {
       viewers: 423,
       isLive: true,
       thumbnail: "https://i2-prod.manchestereveningnews.co.uk/incoming/article18923807.ece/ALTERNATES/s1200/1_VILMUN.jpg",
+      url: "https://dailymotion.com",
     },
   ];
 
@@ -136,6 +139,7 @@ const HeroLanding = () => {
                 viewers={stream.viewers}
                 isLive={stream.isLive}
                 thumbnail={stream.thumbnail}
+                url={stream.url}
               />
             </div>
           ))}
