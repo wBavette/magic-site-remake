@@ -108,17 +108,6 @@ const HeroLanding = () => {
             Votre destination ultime pour le streaming live en haute qualité
           </p>
 
-          {/* CTA Button */}
-          <div 
-            className="opacity-0 animate-fade-in"
-            style={{ animationDelay: "0.4s" }}
-          >
-            <a href="#streams" className="btn-primary-hero">
-              <Zap className="w-5 h-5" />
-              Voir les streams
-              <ArrowRight className="w-5 h-5" />
-            </a>
-          </div>
         </div>
       </div>
 
