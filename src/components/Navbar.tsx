@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className="flex items-center gap-1">
             {/* Discord */}
             <a
-              href="https://discord.gg/EMmEXv3v4x"
+              href="https://discord.gg/Y9rVMh4wxg"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 rounded-xl hover:bg-primary/10 hover:scale-110 transition-all duration-300 group"

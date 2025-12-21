@@ -65,7 +65,7 @@ const HeroLanding = () => {
             </p>
             
             <a
-              href="https://discord.com/invite/EMmEXv3v4x"
+              href="https://discord.gg/Y9rVMh4wxg"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary-hero w-full text-xs sm:text-sm py-2.5 sm:py-3"
