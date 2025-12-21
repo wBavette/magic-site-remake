@@ -11,6 +11,7 @@ const StreamsSection = () => {
       category: "Sport",
       viewers: 1247,
       isLive: true,
+      url: "https://youtube.com",
     },
     {
       id: "2", 
@@ -18,6 +19,7 @@ const StreamsSection = () => {
       category: "Divertissement",
       viewers: 856,
       isLive: true,
+      url: "https://twitch.tv",
     },
     {
       id: "3",
@@ -25,6 +27,7 @@ const StreamsSection = () => {
       category: "Gaming",
       viewers: 423,
       isLive: false,
+      url: "https://dailymotion.com",
     },
   ];
 
