@@ -38,7 +38,7 @@ const AlertModal = ({ isOpen, onClose }: AlertModalProps) => {
             href="#"
             className="inline-flex items-center gap-2 bg-card text-foreground px-6 py-3 rounded-lg font-semibold hover:bg-card/90 transition-colors"
           >
-            Rejoignez ici !
+            Rejoins ici !
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
