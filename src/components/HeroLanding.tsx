@@ -105,7 +105,7 @@ const HeroLanding = () => {
             className="text-lg md:text-xl font-medium text-muted-foreground mb-10 opacity-0 animate-fade-in max-w-md mx-auto leading-relaxed"
             style={{ animationDelay: "0.3s" }}
           >
-            Votre destination ultime pour le streaming live en haute qualité
+            Votre destination ultime pour le streaming live
           </p>
 
         </div>
