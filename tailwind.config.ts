@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Space Grotesk', 'Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -58,6 +59,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
         xl: "1rem",
         "2xl": "1.25rem",
+        "3xl": "1.5rem",
       },
       keyframes: {
         "accordion-down": {
@@ -94,7 +96,7 @@ export default {
         },
         "glow": {
           "0%, 100%": { boxShadow: "0 0 8px hsl(142 76% 45% / 0.6)" },
-          "50%": { boxShadow: "0 0 16px hsl(142 76% 45% / 0.8)" },
+          "50%": { boxShadow: "0 0 20px hsl(142 76% 45% / 0.9)" },
         },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
@@ -112,6 +114,20 @@ export default {
           from: { opacity: "0", transform: "translateY(100%)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "pulse-glow": {
+          "0%, 100%": { 
+            boxShadow: "0 0 20px hsl(262 83% 58% / 0.3)",
+            transform: "scale(1)"
+          },
+          "50%": { 
+            boxShadow: "0 0 40px hsl(262 83% 58% / 0.5)",
+            transform: "scale(1.02)"
+          },
+        },
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -123,10 +139,12 @@ export default {
         "scale-in": "scale-in 0.5s ease-out forwards",
         "pulse-soft": "pulse-soft 2s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite",
-        "float": "float 3s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
         "shimmer": "shimmer 2s linear infinite",
         "bounce-subtle": "bounce-subtle 2s ease-in-out infinite",
         "slide-up": "slide-up 0.5s ease-out forwards",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "gradient-shift": "gradient-shift 8s ease infinite",
       },
     },
   },
