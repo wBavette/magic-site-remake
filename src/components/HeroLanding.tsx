@@ -1,4 +1,4 @@
-import { ArrowRight, AlertTriangle, X } from "lucide-react";
+import { ArrowRight, AlertTriangle, X, Zap } from "lucide-react";
 import { useState } from "react";
 import StreamCard from "./StreamCard";
 
@@ -35,95 +35,102 @@ const HeroLanding = () => {
   ];
 
   return (
-    <section className="flex-1 hero-gradient flex flex-col px-4 py-4 relative overflow-hidden">
+    <section className="flex-1 hero-gradient flex flex-col px-6 py-12 relative overflow-hidden">
       {/* Animated background orbs */}
-      <div className="glow-orb glow-orb-primary w-[400px] h-[400px] -top-32 -left-32" />
-      <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -bottom-40 -right-32 animate-delay-300" />
+      <div className="glow-orb glow-orb-primary w-[500px] h-[500px] -top-40 -left-40" />
+      <div className="glow-orb glow-orb-accent w-[600px] h-[600px] -bottom-60 -right-40 animate-delay-300" />
+      <div className="glow-orb glow-orb-primary w-[300px] h-[300px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '2s' }} />
 
       {/* Warning Alert - Top Right */}
       {showAlert && (
-        <div className="fixed top-20 right-4 z-50 max-w-xs animate-fade-in">
-          <div className="bg-card/95 backdrop-blur-xl border border-border rounded-xl p-4 shadow-xl">
+        <div className="fixed top-20 right-4 z-50 max-w-sm animate-fade-in">
+          <div className="bg-card/95 backdrop-blur-xl border border-primary/20 rounded-2xl p-5 shadow-2xl shadow-primary/10">
             <button
               onClick={() => setShowAlert(false)}
-              className="absolute top-2 right-2 p-1 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all duration-200"
+              className="absolute top-3 right-3 p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all duration-200"
               aria-label="Fermer"
             >
               <X className="w-4 h-4" />
             </button>
             
-            <div className="flex items-center gap-2 text-amber-400 mb-2 pr-6">
-              <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-              <span className="font-bold text-xs tracking-wide">SITE TEMPORAIRE</span>
+            <div className="flex items-center gap-2 text-amber-400 mb-3 pr-6">
+              <div className="p-1.5 bg-amber-400/10 rounded-lg">
+                <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+              </div>
+              <span className="font-bold text-sm tracking-wide">SITE TEMPORAIRE</span>
             </div>
             
-            <p className="text-xs text-muted-foreground mb-3">
-              Rejoins notre canal secours !
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+              Rejoins notre canal secours pour être toujours informé !
             </p>
             
             <a
               href="https://discord.com/invite/EMmEXv3v4x"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full text-xs py-2 px-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              className="btn-primary-hero w-full text-sm py-3"
             >
               Rejoindre Discord
-              <ArrowRight className="w-3 h-3" />
+              <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </div>
       )}
 
-      {/* Hero Content - Compact */}
-      <div className="text-center py-4 relative z-10">
-        {/* Status Badge */}
-        <div 
-          className="inline-flex items-center gap-2 badge-glass rounded-full px-4 py-1.5 mb-3 opacity-0 animate-fade-in"
-          style={{ animationDelay: "0.1s" }}
-        >
-          <span className="live-dot w-2 h-2 rounded-full animate-glow" />
-          <span className="text-xs font-semibold text-foreground/90 tracking-wide">
-            Live maintenant
-          </span>
+      {/* Hero Content */}
+      <div className="flex-1 flex items-center justify-center relative z-10">
+        <div className="max-w-[700px] w-full text-center">
+          {/* Status Badge */}
+          <div 
+            className="inline-flex items-center gap-2.5 badge-glass rounded-full px-5 py-2.5 mb-8 opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.1s" }}
+          >
+            <span className="live-dot w-2.5 h-2.5 rounded-full animate-glow" />
+            <span className="text-sm font-semibold text-foreground/90 tracking-wide">
+              Live maintenant
+            </span>
+          </div>
+
+          {/* Main Title */}
+          <h1 
+            className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 opacity-0 animate-fade-in font-display"
+            style={{ animationDelay: "0.2s" }}
+          >
+            <span className="text-foreground">meru</span>
+            <span className="text-gradient">TV</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p 
+            className="text-lg md:text-xl font-medium text-muted-foreground mb-10 opacity-0 animate-fade-in max-w-md mx-auto leading-relaxed"
+            style={{ animationDelay: "0.3s" }}
+          >
+            Votre destination ultime pour le streaming live
+          </p>
+
         </div>
-
-        {/* Main Title */}
-        <h1 
-          className="text-4xl md:text-5xl font-extrabold tracking-tight mb-2 opacity-0 animate-fade-in font-display"
-          style={{ animationDelay: "0.2s" }}
-        >
-          <span className="text-foreground">meru</span>
-          <span className="text-gradient">TV</span>
-        </h1>
-
-        {/* Subtitle */}
-        <p 
-          className="text-sm md:text-base text-muted-foreground opacity-0 animate-fade-in"
-          style={{ animationDelay: "0.3s" }}
-        >
-          Votre destination ultime pour le streaming live
-        </p>
       </div>
 
-      {/* Streams Section - Compact */}
+      {/* Streams Section */}
       <div 
-        className="flex-1 w-full max-w-5xl mx-auto opacity-0 animate-fade-in relative z-10"
-        style={{ animationDelay: "0.4s" }}
+        id="streams"
+        className="w-full max-w-6xl mx-auto opacity-0 animate-fade-in relative z-10"
+        style={{ animationDelay: "0.5s" }}
       >
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex items-center gap-1.5 bg-live/10 border border-live/20 rounded-full px-3 py-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-live shadow-[0_0_6px_hsl(142_76%_45%/0.8)] animate-glow" />
-            <span className="text-xs font-semibold text-live">En direct</span>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-2 bg-live/10 border border-live/20 rounded-full px-4 py-2">
+            <span className="w-2 h-2 rounded-full bg-live shadow-[0_0_8px_hsl(142_76%_45%/0.8)] animate-glow" />
+            <span className="text-sm font-semibold text-live">En direct</span>
           </div>
-          <h2 className="text-base font-bold text-foreground">Streams disponibles</h2>
+          <h2 className="text-xl font-bold text-foreground">Streams disponibles</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {backupStreams.map((stream, index) => (
             <div 
               key={stream.id}
               className="opacity-0 animate-fade-in-up"
-              style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+              style={{ animationDelay: `${0.6 + index * 0.15}s` }}
             >
               <StreamCard
                 title={stream.title}

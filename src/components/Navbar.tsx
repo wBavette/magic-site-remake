@@ -5,7 +5,7 @@ import meruLogo from "@/assets/meru-logo.png";
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 navbar-blur border-b border-border/50">
-      <div className="container mx-auto px-4 h-12 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center transition-all duration-300 hover:scale-105 hover:opacity-80">
           <img src={meruLogo} alt="MERU TV" className="h-8 w-auto" />
