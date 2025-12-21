@@ -10,7 +10,12 @@ interface StreamCardProps {
 
 const StreamCard = ({ title, category, thumbnail, viewers, isLive = false }: StreamCardProps) => {
   return (
-    <div className="bg-card rounded-xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500 cursor-pointer group hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/5">
+    <a 
+      href="https://youtube.com" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="block bg-card rounded-xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500 cursor-pointer group hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/5"
+    >
       {/* Thumbnail */}
       <div className="relative aspect-video bg-gradient-to-br from-primary/20 to-accent/10 overflow-hidden">
         {thumbnail ? (
@@ -51,7 +56,7 @@ const StreamCard = ({ title, category, thumbnail, viewers, isLive = false }: Str
           </span>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
