@@ -1,5 +1,7 @@
 import StreamSection from "./StreamSection";
 
+const STREAM_THUMBNAIL = "https://media.discordapp.net/attachments/1433273779022463058/1450527603344670832/merutv_logo.jpg?ex=6948229a&is=6946d11a&hm=5f3a9eda2ba3d79f38f4943136c2a1d05bfb11a357e191809b1c2396eee22a0a&=&format=webp";
+
 const StreamsSection = () => {
   // Sample data
   const mainStreams: any[] = [];
@@ -12,6 +14,7 @@ const StreamsSection = () => {
       viewers: 1247,
       isLive: true,
       url: "https://youtube.com",
+      thumbnail: STREAM_THUMBNAIL,
     },
     {
       id: "2", 
@@ -20,6 +23,7 @@ const StreamsSection = () => {
       viewers: 856,
       isLive: true,
       url: "https://twitch.tv",
+      thumbnail: STREAM_THUMBNAIL,
     },
     {
       id: "3",
@@ -28,6 +32,7 @@ const StreamsSection = () => {
       viewers: 423,
       isLive: false,
       url: "https://dailymotion.com",
+      thumbnail: STREAM_THUMBNAIL,
     },
   ];
 

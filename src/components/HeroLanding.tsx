@@ -1,7 +1,8 @@
 import { ArrowRight, AlertTriangle, X } from "lucide-react";
 import { useState } from "react";
 import StreamCard from "./StreamCard";
-import streamMatchImage from "@/assets/stream-match.png";
+
+const STREAM_THUMBNAIL = "https://media.discordapp.net/attachments/1433273779022463058/1450527603344670832/merutv_logo.jpg?ex=6948229a&is=6946d11a&hm=5f3a9eda2ba3d79f38f4943136c2a1d05bfb11a357e191809b1c2396eee22a0a&=&format=webp";
 
 const HeroLanding = () => {
   const [showAlert, setShowAlert] = useState(true);
@@ -13,7 +14,7 @@ const HeroLanding = () => {
       category: "Sport",
       viewers: 1247,
       isLive: true,
-      thumbnail: streamMatchImage,
+      thumbnail: STREAM_THUMBNAIL,
     },
     {
       id: "2", 
@@ -21,6 +22,7 @@ const HeroLanding = () => {
       category: "Divertissement",
       viewers: 856,
       isLive: true,
+      thumbnail: STREAM_THUMBNAIL,
     },
     {
       id: "3",
@@ -28,6 +30,7 @@ const HeroLanding = () => {
       category: "Gaming",
       viewers: 423,
       isLive: true,
+      thumbnail: STREAM_THUMBNAIL,
     },
   ];
 
