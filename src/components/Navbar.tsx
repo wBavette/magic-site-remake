@@ -19,7 +19,7 @@ const Navbar = () => {
             className="inline-flex items-center gap-2 font-bold text-sm py-2.5 px-5 rounded-xl transition-all duration-300 btn-primary-hero"
           >
             <Zap className="w-4 h-4" />
-            <span className="hidden xs:inline">Achète ton</span> IPTV
+            ACHÈTE TON IPTV
           </Link>
 
           <div className="h-6 w-px bg-border/50 hidden sm:block" />
