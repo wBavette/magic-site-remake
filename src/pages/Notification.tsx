@@ -9,7 +9,7 @@ const Notification = () => {
   const [hasJoined, setHasJoined] = useState(false);
 
   const handleJoinTelegram = () => {
-    window.open("https://t.me/+wqmOyqn9IGkwYTJk", "_blank");
+    window.open("https://t.me/addlist/5uqEUhD6ZwpjMDFk", "_blank");
     setHasJoined(true);
   };
 
