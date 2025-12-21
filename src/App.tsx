@@ -8,7 +8,7 @@ import CGU from "./pages/CGU";
 import Confidentialite from "./pages/Confidentialite";
 import DMCA from "./pages/DMCA";
 import MentionsLegales from "./pages/MentionsLegales";
-
+import Notification from "./pages/Notification";
 import IPTV from "./pages/IPTV";
 import NotFound from "./pages/NotFound";
 
@@ -26,7 +26,7 @@ const App = () => (
           <Route path="/confidentialite" element={<Confidentialite />} />
           <Route path="/dmca" element={<DMCA />} />
           <Route path="/mentions-legales" element={<MentionsLegales />} />
-          
+          <Route path="/notification" element={<Notification />} />
           <Route path="/iptv" element={<IPTV />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
