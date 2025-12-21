@@ -6,13 +6,14 @@ interface StreamCardProps {
   thumbnail?: string;
   viewers: number;
   isLive?: boolean;
+  url?: string;
 }
 
-const StreamCard = ({ title, category, thumbnail, viewers, isLive = false }: StreamCardProps) => {
+const StreamCard = ({ title, category, thumbnail, viewers, isLive = false, url = "#" }: StreamCardProps) => {
   return (
     <a 
-      href="https://youtube.com" 
-      target="_blank" 
+      href={url}
+      target="_blank"
       rel="noopener noreferrer"
       className="block bg-card rounded-xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500 cursor-pointer group hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/5"
     >

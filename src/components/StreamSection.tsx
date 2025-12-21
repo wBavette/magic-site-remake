@@ -7,6 +7,7 @@ interface Stream {
   thumbnail?: string;
   viewers: number;
   isLive?: boolean;
+  url?: string;
 }
 
 interface StreamSectionProps {
@@ -45,6 +46,7 @@ const StreamSection = ({ title, streams, type }: StreamSectionProps) => {
               thumbnail={stream.thumbnail}
               viewers={stream.viewers}
               isLive={stream.isLive}
+              url={stream.url}
             />
           ))}
         </div>
