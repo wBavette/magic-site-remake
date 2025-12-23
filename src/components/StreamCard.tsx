@@ -15,7 +15,7 @@ const StreamCard = ({ title, category, thumbnail, viewers, isLive = false, url =
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate(`/notification?redirect=${encodeURIComponent(url)}`);
+    navigate(`/player?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`);
   };
 
   return (
