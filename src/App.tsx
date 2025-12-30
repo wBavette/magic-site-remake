@@ -10,7 +10,6 @@ import DMCA from "./pages/DMCA";
 import MentionsLegales from "./pages/MentionsLegales";
 import Notification from "./pages/Notification";
 import IPTV from "./pages/IPTV";
-import Player from "./pages/Player";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,7 +28,6 @@ const App = () => (
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/iptv" element={<IPTV />} />
-          <Route path="/player" element={<Player />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

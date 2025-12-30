@@ -13,7 +13,7 @@ const HeroLanding = () => {
       viewers: 1247,
       isLive: true,
       thumbnail: "https://media.ouest-france.fr/v1/pictures/MjAyNTEyZDZjZjNiYTkyZjFiNDlkZjljMmVjMDljNDZhMTU0MzI?width=1260&height=708&focuspoint=50%2C25&cropresize=1&client_id=bpeditorial&sign=98c65fbdf236cbeca6801e743bd000cff274e3deec659f6eca7e7d365349bb96",
-      url: "http://23323-climb.tx-4kott.com:80/391575205a/4b11b323de/526126",
+      url: "https://youtube.com",
     },
     {
       id: "2", 
