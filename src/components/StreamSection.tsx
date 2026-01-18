@@ -1,4 +1,8 @@
+import { useState } from "react";
 import StreamCard from "./StreamCard";
+import VideoPlayerModal from "./VideoPlayerModal";
+
+const STREAM_URL = "http://line.trxdnscloud.ru:80/fa7857e7b8/143fd27b673a/526153";
 
 interface Stream {
   id: string;
@@ -7,7 +11,6 @@ interface Stream {
   thumbnail?: string;
   viewers: number;
   isLive?: boolean;
-  url?: string;
 }
 
 interface StreamSectionProps {
@@ -18,6 +21,13 @@ interface StreamSectionProps {
 
 const StreamSection = ({ title, streams, type }: StreamSectionProps) => {
   const isEmpty = streams.length === 0;
+  const [playerOpen, setPlayerOpen] = useState(false);
+  const [currentStream, setCurrentStream] = useState<{ title: string } | null>(null);
+
+  const handleStreamClick = (streamTitle: string) => {
+    setCurrentStream({ title: streamTitle });
+    setPlayerOpen(true);
+  };
 
   return (
     <section className="py-8">
@@ -46,11 +56,18 @@ const StreamSection = ({ title, streams, type }: StreamSectionProps) => {
               thumbnail={stream.thumbnail}
               viewers={stream.viewers}
               isLive={stream.isLive}
-              url={stream.url}
+              onPlay={() => handleStreamClick(stream.title)}
             />
           ))}
         </div>
       )}
+
+      <VideoPlayerModal
+        isOpen={playerOpen}
+        onClose={() => setPlayerOpen(false)}
+        streamUrl={STREAM_URL}
+        title={currentStream?.title || ""}
+      />
     </section>
   );
 };

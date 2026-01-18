@@ -1,9 +1,19 @@
 import { ArrowRight, AlertTriangle, X, Zap } from "lucide-react";
 import { useState } from "react";
 import StreamCard from "./StreamCard";
+import VideoPlayerModal from "./VideoPlayerModal";
+
+const STREAM_URL = "http://line.trxdnscloud.ru:80/fa7857e7b8/143fd27b673a/526153";
 
 const HeroLanding = () => {
   const [showAlert, setShowAlert] = useState(true);
+  const [playerOpen, setPlayerOpen] = useState(false);
+  const [currentStream, setCurrentStream] = useState<{ title: string } | null>(null);
+
+  const handleStreamClick = (title: string) => {
+    setCurrentStream({ title });
+    setPlayerOpen(true);
+  };
 
   const backupStreams = [
     {
@@ -166,12 +176,20 @@ const HeroLanding = () => {
                 viewers={stream.viewers}
                 isLive={stream.isLive}
                 thumbnail={stream.thumbnail}
-                url={stream.url}
+                onPlay={() => handleStreamClick(stream.title)}
               />
             </div>
           ))}
         </div>
       </div>
+
+      {/* Video Player Modal */}
+      <VideoPlayerModal
+        isOpen={playerOpen}
+        onClose={() => setPlayerOpen(false)}
+        streamUrl={STREAM_URL}
+        title={currentStream?.title || ""}
+      />
     </section>
   );
 };
