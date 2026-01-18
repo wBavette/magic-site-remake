@@ -1,5 +1,4 @@
 import { Eye, Play } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 interface StreamCardProps {
   title: string;
@@ -7,15 +6,12 @@ interface StreamCardProps {
   thumbnail?: string;
   viewers: number;
   isLive?: boolean;
-  url?: string;
+  onPlay?: () => void;
 }
 
-const StreamCard = ({ title, category, thumbnail, viewers, isLive = false, url = "#" }: StreamCardProps) => {
-  const navigate = useNavigate();
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigate(`/notification?redirect=${encodeURIComponent(url)}`);
+const StreamCard = ({ title, category, thumbnail, viewers, isLive = false, onPlay }: StreamCardProps) => {
+  const handleClick = () => {
+    onPlay?.();
   };
 
   return (
