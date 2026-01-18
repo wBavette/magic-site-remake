@@ -3,7 +3,9 @@ import { useState } from "react";
 import StreamCard from "./StreamCard";
 import VideoPlayerModal from "./VideoPlayerModal";
 
-const STREAM_URL = "http://line.trxdnscloud.ru:80/fa7857e7b8/143fd27b673a/526153";
+const ORIGINAL_STREAM_URL = "http://line.trxdnscloud.ru:80/fa7857e7b8/143fd27b673a/526153";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const STREAM_URL = `${SUPABASE_URL}/functions/v1/stream-proxy?url=${encodeURIComponent(ORIGINAL_STREAM_URL)}`;
 
 const HeroLanding = () => {
   const [showAlert, setShowAlert] = useState(true);
