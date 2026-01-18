@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { X, Volume2, VolumeX, Maximize, Minimize, Play, Pause } from "lucide-react";
+import { X, Volume2, VolumeX, Maximize, Minimize, Play, Pause, RefreshCw } from "lucide-react";
 import Hls from "hls.js";
 
 interface VideoPlayerModalProps {
@@ -17,41 +17,67 @@ const VideoPlayerModal = ({ isOpen, onClose, streamUrl, title }: VideoPlayerModa
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [useIframe, setUseIframe] = useState(false);
 
   useEffect(() => {
-    if (!isOpen || !videoRef.current) return;
+    if (!isOpen) {
+      setError(null);
+      setIsLoading(true);
+      setUseIframe(false);
+      return;
+    }
+    
+    if (useIframe || !videoRef.current) return;
 
     const video = videoRef.current;
     let hls: Hls | null = null;
 
     const initPlayer = () => {
       setError(null);
+      setIsLoading(true);
       
-      if (streamUrl.includes('.m3u8') || streamUrl.includes(':80/') || streamUrl.includes(':8080/')) {
-        if (Hls.isSupported()) {
-          hls = new Hls({
-            enableWorker: true,
-            lowLatencyMode: true,
-          });
-          hls.loadSource(streamUrl);
-          hls.attachMedia(video);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            video.play().catch(() => setIsPlaying(false));
-          });
-          hls.on(Hls.Events.ERROR, (_, data) => {
-            if (data.fatal) {
-              setError("Erreur de chargement du flux");
-            }
-          });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = streamUrl;
+      // Try direct video source first
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          enableWorker: true,
+          lowLatencyMode: true,
+          xhrSetup: (xhr) => {
+            xhr.timeout = 10000;
+          },
+        });
+        
+        hls.loadSource(streamUrl);
+        hls.attachMedia(video);
+        
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          setIsLoading(false);
           video.play().catch(() => setIsPlaying(false));
-        } else {
-          setError("Votre navigateur ne supporte pas ce format");
-        }
-      } else {
+        });
+        
+        hls.on(Hls.Events.ERROR, (_, data) => {
+          console.log("HLS Error:", data);
+          if (data.fatal) {
+            setIsLoading(false);
+            // Try iframe as fallback
+            setUseIframe(true);
+          }
+        });
+        
+        // Timeout fallback
+        setTimeout(() => {
+          if (isLoading) {
+            setUseIframe(true);
+          }
+        }, 5000);
+        
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = streamUrl;
+        video.addEventListener('loadeddata', () => setIsLoading(false));
+        video.addEventListener('error', () => setUseIframe(true));
         video.play().catch(() => setIsPlaying(false));
+      } else {
+        setUseIframe(true);
       }
     };
 
@@ -63,13 +89,15 @@ const VideoPlayerModal = ({ isOpen, onClose, streamUrl, title }: VideoPlayerModa
       }
       video.src = "";
     };
-  }, [isOpen, streamUrl]);
+  }, [isOpen, streamUrl, useIframe]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === " ") togglePlay();
-      if (e.key === "m") toggleMute();
+      if (!useIframe) {
+        if (e.key === " ") togglePlay();
+        if (e.key === "m") toggleMute();
+      }
       if (e.key === "f") toggleFullscreen();
     };
 
@@ -82,10 +110,10 @@ const VideoPlayerModal = ({ isOpen, onClose, streamUrl, title }: VideoPlayerModa
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, useIframe]);
 
   const togglePlay = () => {
-    if (!videoRef.current) return;
+    if (!videoRef.current || useIframe) return;
     if (videoRef.current.paused) {
       videoRef.current.play();
       setIsPlaying(true);
@@ -96,7 +124,7 @@ const VideoPlayerModal = ({ isOpen, onClose, streamUrl, title }: VideoPlayerModa
   };
 
   const toggleMute = () => {
-    if (!videoRef.current) return;
+    if (!videoRef.current || useIframe) return;
     videoRef.current.muted = !videoRef.current.muted;
     setIsMuted(videoRef.current.muted);
   };
@@ -110,6 +138,12 @@ const VideoPlayerModal = ({ isOpen, onClose, streamUrl, title }: VideoPlayerModa
       document.exitFullscreen();
       setIsFullscreen(false);
     }
+  };
+
+  const retry = () => {
+    setUseIframe(false);
+    setError(null);
+    setIsLoading(true);
   };
 
   if (!isOpen) return null;
@@ -135,59 +169,90 @@ const VideoPlayerModal = ({ isOpen, onClose, streamUrl, title }: VideoPlayerModa
           <h3 className="text-white font-bold text-lg drop-shadow-lg">{title}</h3>
         </div>
 
-        {/* Video */}
-        <video
-          ref={videoRef}
-          className="w-full h-full object-contain bg-black"
-          onClick={togglePlay}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          playsInline
-          autoPlay
-        />
-
-        {/* Error state */}
-        {error && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/80">
+        {/* Loading state */}
+        {isLoading && !useIframe && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black z-10">
             <div className="text-center">
-              <p className="text-red-500 font-semibold mb-2">{error}</p>
-              <p className="text-muted-foreground text-sm">Vérifiez que le flux est actif</p>
+              <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-muted-foreground">Chargement du flux...</p>
             </div>
           </div>
         )}
 
-        {/* Controls */}
-        <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <button onClick={togglePlay} className="p-2 hover:bg-white/20 rounded-full transition-all">
-                {isPlaying ? (
-                  <Pause className="w-6 h-6 text-white" fill="white" />
-                ) : (
-                  <Play className="w-6 h-6 text-white" fill="white" />
-                )}
+        {/* Video player or Iframe fallback */}
+        {useIframe ? (
+          <div className="w-full h-full flex flex-col items-center justify-center bg-black text-center p-6">
+            <p className="text-amber-400 font-semibold mb-3">Le flux nécessite un lecteur externe</p>
+            <p className="text-muted-foreground text-sm mb-6 max-w-md">
+              Ce type de flux IPTV ne peut pas être lu directement dans le navigateur à cause des restrictions CORS.
+            </p>
+            <div className="flex gap-3">
+              <a
+                href={streamUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-all"
+              >
+                Ouvrir dans VLC
+              </a>
+              <button
+                onClick={retry}
+                className="px-6 py-3 bg-muted text-foreground rounded-xl font-semibold hover:bg-muted/80 transition-all flex items-center gap-2"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Réessayer
               </button>
-              <button onClick={toggleMute} className="p-2 hover:bg-white/20 rounded-full transition-all">
-                {isMuted ? (
-                  <VolumeX className="w-6 h-6 text-white" />
-                ) : (
-                  <Volume2 className="w-6 h-6 text-white" />
-                )}
-              </button>
-              <span className="text-white/80 text-sm font-medium flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-live animate-pulse" />
-                EN DIRECT
-              </span>
             </div>
-            <button onClick={toggleFullscreen} className="p-2 hover:bg-white/20 rounded-full transition-all">
-              {isFullscreen ? (
-                <Minimize className="w-6 h-6 text-white" />
-              ) : (
-                <Maximize className="w-6 h-6 text-white" />
-              )}
-            </button>
+            <p className="text-xs text-muted-foreground mt-4">
+              Copiez ce lien dans VLC : <code className="bg-muted px-2 py-1 rounded text-xs break-all">{streamUrl}</code>
+            </p>
           </div>
-        </div>
+        ) : (
+          <video
+            ref={videoRef}
+            className="w-full h-full object-contain bg-black"
+            onClick={togglePlay}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            playsInline
+            autoPlay
+          />
+        )}
+
+        {/* Controls - only show for video player */}
+        {!useIframe && (
+          <div className={`absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <button onClick={togglePlay} className="p-2 hover:bg-white/20 rounded-full transition-all">
+                  {isPlaying ? (
+                    <Pause className="w-6 h-6 text-white" fill="white" />
+                  ) : (
+                    <Play className="w-6 h-6 text-white" fill="white" />
+                  )}
+                </button>
+                <button onClick={toggleMute} className="p-2 hover:bg-white/20 rounded-full transition-all">
+                  {isMuted ? (
+                    <VolumeX className="w-6 h-6 text-white" />
+                  ) : (
+                    <Volume2 className="w-6 h-6 text-white" />
+                  )}
+                </button>
+                <span className="text-white/80 text-sm font-medium flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-live animate-pulse" />
+                  EN DIRECT
+                </span>
+              </div>
+              <button onClick={toggleFullscreen} className="p-2 hover:bg-white/20 rounded-full transition-all">
+                {isFullscreen ? (
+                  <Minimize className="w-6 h-6 text-white" />
+                ) : (
+                  <Maximize className="w-6 h-6 text-white" />
+                )}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
